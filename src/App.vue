@@ -44,7 +44,7 @@
       </template>
       <v-app-bar-nav-icon @click="drawer=!drawer"></v-app-bar-nav-icon>
           <!--v-app-bar-nav-iconは、「」のアイコンの事、クリック操作のため@clickを設定.-->
-      <v-toolbar-title>Vuetify</v-toolbar-title>
+      <v-toolbar-title>Vuetify ToDoList</v-toolbar-title>
       <v-spacer></v-spacer><!--「v-spacer」は、2つのコンポーネントの間にスペースをとれる。-->
       <v-toolbar-items><!--ボタンに「」した際に、v-app-barコンポーネントの「」分のクリック領域を持たせれる。-->
         <v-btn text to="/Login">Login</v-btn><!--textでボタンを「」にできる。リンク設定は、v-buttonタグに「」を加えることで設定できる。routesのpathを参照-->
