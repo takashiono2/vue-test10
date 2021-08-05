@@ -1,103 +1,59 @@
 <template>
-  <div class="about">
-    <v-list
-      two-line
-      subheader
-    >
-      <v-subheader>General</v-subheader>
-
-      <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title>Profile photo</v-list-item-title>
-          <v-list-item-subtitle>Change your Google+ profile photo</v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
-
-      <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title>Show your status</v-list-item-title>
-          <v-list-item-subtitle>Your status is visible to everyone</v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
-    </v-list>
-
-    <v-divider></v-divider>
-
-    <v-list
-      subheader
-      two-line
-      flat
-    >
-      <v-subheader>Hangout notifications</v-subheader>
-
-      <v-list-item-group
-        v-model="settings"
-        multiple
+  <div class="home" >
+    <v-list class="pt-0">
+      <div
+          v-for="task in tasks" 
+          :key="task.id"   
       >
-        <v-list-item>
-          <template v-slot:default="{ active, }">
+        <v-list-item @click="doneTask(task.id)">
+          <template v-slot:default>
             <v-list-item-action>
               <v-checkbox
-                :input-value="active"
+                :input-value="task.done"
                 color="primary"
               ></v-checkbox>
             </v-list-item-action>
 
             <v-list-item-content>
-              <v-list-item-title>Notifications</v-list-item-title>
-              <v-list-item-subtitle>Allow notifications</v-list-item-subtitle>
+              <v-list-item-title>{{task.title}}</v-list-item-title>
             </v-list-item-content>
           </template>
         </v-list-item>
-
-        <v-list-item>
-          <template v-slot:default="{ active }">
-            <v-list-item-action>
-              <v-checkbox
-                :input-value="active"
-                color="primary"
-              ></v-checkbox>
-            </v-list-item-action>
-
-            <v-list-item-content>
-              <v-list-item-title>Sound</v-list-item-title>
-              <v-list-item-subtitle>Hangouts message</v-list-item-subtitle>
-            </v-list-item-content>
-          </template>
-        </v-list-item>
-
-        <v-list-item>
-          <template v-slot:default="{ active }">
-            <v-list-item-action>
-              <v-checkbox
-                :input-value="active"
-                color="primary"
-              ></v-checkbox>
-            </v-list-item-action>
-
-            <v-list-item-content>
-              <v-list-item-title>Video sounds</v-list-item-title>
-              <v-list-item-subtitle>Hangouts video call</v-list-item-subtitle>
-            </v-list-item-content>
-          </template>
-        </v-list-item>
-
-        <v-list-item>
-          <template v-slot:default="{ active }">
-            <v-list-item-action>
-              <v-checkbox
-                :input-value="active"
-                color="primary"
-              ></v-checkbox>
-            </v-list-item-action>
-
-            <v-list-item-content>
-              <v-list-item-title>Invites</v-list-item-title>
-              <v-list-item-subtitle>Notify when receiving invites</v-list-item-subtitle>
-            </v-list-item-content>
-          </template>
-        </v-list-item>
-      </v-list-item-group>
+        <v-divider></v-divider>
+      </div>
     </v-list>
   </div>
 </template>
+
+<script>
+  export default{
+    name: 'Todo',
+    data: function(){
+      return {
+        tasks: [
+              {
+                id: 1,
+                title: 'Wake up',
+                done: false
+              },
+              {
+                id: 2,
+                title: 'Get bananas',
+                done: false
+              },
+              {
+                id: 3,
+                title: 'Eat bananas',
+                done: false
+              }
+        ]
+      }
+    },
+    methods:{
+      doneTask: function(id){
+        let task = this.tasks.filter(task=>task.id === id)[0];
+        task.done = !task.done;
+      }
+    }
+  }
+</script>
