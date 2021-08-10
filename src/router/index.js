@@ -31,6 +31,10 @@ export default new Router({
       name: 'Todo',
       component: () => import('../views/Todo.vue')
     },
-
+    {
+      path: '/cal',
+      name: 'Cal',
+      component: () => import('../views/Cal.vue')
+    }
   ]
 })
